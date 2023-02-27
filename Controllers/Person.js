@@ -67,11 +67,25 @@ exports.updatePerson = async (req, res) => {
 
 exports.findPersonByQueryChain = async (req, res) => {
   try {
+    const fav="djeja"
     const person = await Person.find({
-      favouriteFood: { $all: ["djeja"] },
+      favouriteFood: { $all: [fav] },
     }).sort({ age: "asc" });
     res.status(200).send({ msg: "found", person });
   } catch (error) {
     res.status(500).send({ msg: "not found" });
   }
 };
+
+///// query chain by age
+
+exports.filterPersonByAge = async(req,res)=>{
+    try {
+        const agelim =27
+        const person = await Person.find({age:{$gt:agelim}})
+        .sort({age:"asc"})
+        res.status(200).send({msg:"found",person})
+    } catch (error) {
+        res.status(500).send({ msg: "not found" });
+    }
+}

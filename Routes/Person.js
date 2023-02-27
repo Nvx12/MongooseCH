@@ -1,5 +1,5 @@
 const express = require("express");
-const {addPerson,getAllPersons,getPerson,deletePerson,updatePerson,findPersonByQueryChain,} = require("../Controllers/Person");
+const {addPerson,getAllPersons,getPerson,deletePerson,updatePerson,findPersonByQueryChain, filterPersonByAge,} = require("../Controllers/Person");
 
 const personRouter = express.Router();
 
@@ -14,5 +14,7 @@ personRouter.delete("/deletePerson/:id", deletePerson);
 personRouter.put("/updatePerson/:id", updatePerson);
 
 personRouter.get("/test", findPersonByQueryChain);
+
+personRouter.get('/getByAge',filterPersonByAge)
 
 module.exports = personRouter;
